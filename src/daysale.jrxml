@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport name="daysale" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+    <!-- Yeh Report A4 Size me banayi hai taaki poore din ki sale sahi se dikhe -->
+    
+    <parameter name="sale_date" class="java.lang.String"/>
+    
+    <queryString>
+        <![CDATA[SELECT d.item_name, d.sale_rate, SUM(d.quantity) as total_qty, SUM(d.sub_total) as total_sales
+                 FROM sales_invoices m
+                 INNER JOIN sale_invoice_details d ON m.invoice_no = d.invoice_no
+                 WHERE m.date = $P{sale_date}
+                 GROUP BY d.item_name, d.sale_rate]]>
+    </queryString>
+    
+    <field name="item_name" class="java.lang.String"/>
+    <field name="sale_rate" class="java.lang.Double"/>
+    <field name="total_qty" class="java.lang.Long"/>
+    <field name="total_sales" class="java.lang.Double"/>
+    
+    <variable name="grand_total" class="java.lang.Double" calculation="Sum">
+        <variableExpression><![CDATA[$F{total_sales}]]></variableExpression>
+    </variable>
+    
+    <title>
+        <band height="60">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="26"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[DAY WISE TOTAL SALES REPORT]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="0" y="35" width="555" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Report Date: " + $P{sale_date}]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement x="0" y="58" width="555" height="1"/>
+            </line>
+        </band>
+    </title>
+    
+    <columnHeader>
+        <band height="25">
+            <staticText>
+                <reportElement x="10" y="5" width="240" height="15"/>
+                <textElement><font size="11" isBold="true"/></textElement>
+                <text><![CDATA[Item Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="250" y="5" width="90" height="15"/>
+                <textElement textAlignment="Right"><font size="11" isBold="true"/></textElement>
+                <text><![CDATA[Rate]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="340" y="5" width="80" height="15"/>
+                <textElement textAlignment="Center"><font size="11" isBold="true"/></textElement>
+                <text><![CDATA[Total Qty]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="420" y="5" width="120" height="15"/>
+                <textElement textAlignment="Right"><font size="11" isBold="true"/></textElement>
+                <text><![CDATA[Total Amount]]></text>
+            </staticText>
+            <line>
+                <reportElement x="0" y="22" width="555" height="1"/>
+            </line>
+        </band>
+    </columnHeader>
+    
+    <detail>
+        <band height="22">
+            <textField>
+                <reportElement x="10" y="3" width="240" height="15"/>
+                <textElement><font size="10"/></textElement>
+                <textFieldExpression><![CDATA[$F{item_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="250" y="3" width="90" height="15"/>
+                <textElement textAlignment="Right"><font size="10"/></textElement>
+                <textFieldExpression><![CDATA[String.format("%.2f", $F{sale_rate})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="340" y="3" width="80" height="15"/>
+                <textElement textAlignment="Center"><font size="10"/></textElement>
+                <textFieldExpression><![CDATA[$F{total_qty}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="420" y="3" width="120" height="15"/>
+                <textElement textAlignment="Right"><font size="10"/></textElement>
+                <textFieldExpression><![CDATA[String.format("%.2f", $F{total_sales})]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    
+    <summary>
+        <band height="50">
+            <line>
+                <reportElement x="0" y="5" width="555" height="1"/>
+            </line>
+            <staticText>
+                <reportElement x="300" y="15" width="120" height="20"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[NET TOTAL SALE:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="420" y="15" width="120" height="20"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[String.format("%.2f", $V{grand_total})]]></textFieldExpression>
+            </textField>
+        </band>
+    </summary>
+</jasperReport>
+

@@ -15,8 +15,66 @@ public class StockReport extends javax.swing.JFrame {
      */
     public StockReport() {
         initComponents();
+         loadDefaultStockReport();
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
+    // इस मेथड को Constructor में initComponents(); के बाद कॉल करें
+private void loadDefaultStockReport() {
+    try {
+        // 1. आज की तारीख (Current Date) निकालना
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        java.util.Date today = cal.getTime();
+        
+        // 2. पिछले महीने की आज की तारीख (1 Month Ago) निकालना
+        cal.add(java.util.Calendar.MONTH, -1);
+        java.util.Date oneMonthAgo = cal.getTime();
+        
+        // 3. JDateChooser में तारीखें सेट करना
+        startdate.setDate(oneMonthAgo);
+        enddate.setDate(today);
+        
+        // 4. डेटाबेस फॉर्मेट में बदलना
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        String strFrom = sdf.format(oneMonthAgo);
+        String strTo = sdf.format(today);
+        
+        // 5. SQL क्वेरी चलाना और टेबल में डेटा भरना
+        String sql = "SELECT item_id, item_name, purchase_rate, sale_rate, opening_stock, "
+                   + "purchase_stock, sale_stock, available_stock "
+                   + "FROM stock_report "
+                   + "WHERE DATE(last_updated) BETWEEN ? AND ?";
+                   
+        if (con == null) {
+            // con = MyConnection.getConnection(); // अपने कनेक्शन के हिसाब से बदलें
+        }
+        
+        java.sql.PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, strFrom);
+        pst.setString(2, strTo);
+        
+        java.sql.ResultSet rs = pst.executeQuery();
+        
+        // Table को साफ़ करके नया डेटा डालना
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) StockTable.getModel();
+        model.setRowCount(0); 
+        
+        while(rs.next()) {
+            model.addRow(new Object[]{
+                rs.getString("item_id"),
+                rs.getString("item_name"),
+                rs.getString("purchase_rate"),
+                rs.getString("sale_rate"),
+                rs.getString("opening_stock"),
+                rs.getString("purchase_stock"),
+                rs.getString("sale_stock"),
+                rs.getString("available_stock")
+            });
+        }
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "डिफ़ॉल्ट डेटा लोड एरर: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,7 +87,7 @@ public class StockReport extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        StockTable = new javax.swing.JTable();
         startdate = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -41,11 +99,16 @@ public class StockReport extends javax.swing.JFrame {
         btnExportToExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jTable1.setBackground(new java.awt.Color(242, 242, 242));
-        jTable1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        StockTable.setBackground(new java.awt.Color(242, 242, 242));
+        StockTable.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        StockTable.setForeground(new java.awt.Color(255, 51, 51));
+        StockTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -61,13 +124,13 @@ public class StockReport extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setShowGrid(true);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        StockTable.setShowGrid(true);
+        StockTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                StockTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(StockTable);
 
         startdate.setDateFormatString("yyyy-MM-dd");
         startdate.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -91,7 +154,7 @@ public class StockReport extends javax.swing.JFrame {
         btnBack.setText("Back");
         btnBack.addActionListener(this::btnBackActionPerformed);
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 0, 0));
         jLabel2.setText("Stock Report");
 
@@ -109,35 +172,36 @@ public class StockReport extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(577, 577, 577)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(600, 600, 600)
+                        .addComponent(jLabel2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(startdate, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addGap(33, 33, 33)
+                        .addComponent(enddate, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBack)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExportToExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(Export_To_PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(startdate, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(33, 33, 33)
-                .addComponent(enddate, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBack)
-                .addGap(18, 18, 18)
-                .addComponent(btnExportToExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(Export_To_PDF, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -151,7 +215,7 @@ public class StockReport extends javax.swing.JFrame {
                         .addComponent(btnSearch)
                         .addComponent(Export_To_PDF)
                         .addComponent(btnExportToExcel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -173,9 +237,9 @@ public class StockReport extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void StockTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StockTableMouseClicked
 
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_StockTableMouseClicked
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
    try {
@@ -211,7 +275,7 @@ public class StockReport extends javax.swing.JFrame {
         java.sql.ResultSet rs = pst.executeQuery();
         
         // 7. jTable1 के अंदर डेटा लोड करना (rs2xml.jar की मदद से)
-        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) StockTable.getModel();
 model.setRowCount(0); // पुरानी खोजी गई एंट्रीज को साफ करने के लिए
 
 while(rs.next()) {
@@ -239,7 +303,7 @@ while(rs.next()) {
 
     private void Export_To_PDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Export_To_PDFActionPerformed
         // 1. सबसे पहले चेक करें कि आपकी जे-टेबल (jTable1) में डेटा है या नहीं
-if (jTable1.getRowCount() == 0) {
+if (StockTable.getRowCount() == 0) {
     javax.swing.JOptionPane.showMessageDialog(this, "table me koi data nehi he");
     return;
 }
@@ -278,20 +342,20 @@ try {
     document.add(new com.itextpdf.layout.element.Paragraph("\n"));
 
     // 5. टेबल के कॉलम्स की संख्या के हिसाब से iText टेबल सेटअप करें
-    int totalColumns = jTable1.getColumnCount();
+    int totalColumns = StockTable.getColumnCount();
     com.itextpdf.layout.element.Table pdfTable = new com.itextpdf.layout.element.Table(totalColumns);
 
     // 6. PDF टेबल में हेडर (Columns के नाम) जोड़ें
     for (int i = 0; i < totalColumns; i++) {
         com.itextpdf.layout.element.Cell cell = new com.itextpdf.layout.element.Cell();
-        cell.add(new com.itextpdf.layout.element.Paragraph(jTable1.getColumnName(i)));
+        cell.add(new com.itextpdf.layout.element.Paragraph(StockTable.getColumnName(i)));
         pdfTable.addHeaderCell(cell);
     }
 
     // 7. jTable1 का सारा डेटा (Rows और Columns) PDF टेबल में ट्रांसफर करें
-    for (int r = 0; r < jTable1.getRowCount(); r++) {
+    for (int r = 0; r < StockTable.getRowCount(); r++) {
         for (int c = 0; c < totalColumns; c++) {
-            Object value = jTable1.getValueAt(r, c);
+            Object value = StockTable.getValueAt(r, c);
             String cellValue = (value != null) ? value.toString() : "";
             pdfTable.addCell(new com.itextpdf.layout.element.Cell().add(new com.itextpdf.layout.element.Paragraph(cellValue)));
         }
@@ -313,7 +377,7 @@ try {
 
     private void btnExportToExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportToExcelActionPerformed
       // 1. सबसे पहले चेक करें कि आपकी जे-टेबल (jTable1) में डेटा है या नहीं
-if (jTable1.getRowCount() == 0) {
+if (StockTable.getRowCount() == 0) {
     javax.swing.JOptionPane.showMessageDialog(this, "टेबल में एक्सपोर्ट करने के लिए कोई डेटा नहीं है!");
     return;
 }
@@ -325,17 +389,17 @@ try {
     
     // 3. एक्सेल में हेडर रो (Columns के नाम) बनाएं
     org.apache.poi.ss.usermodel.Row headerRow = sheet.createRow(0);
-    for (int i = 0; i < jTable1.getColumnCount(); i++) {
+    for (int i = 0; i < StockTable.getColumnCount(); i++) {
         org.apache.poi.ss.usermodel.Cell cell = headerRow.createCell(i);
-        cell.setCellValue(jTable1.getColumnName(i));
+        cell.setCellValue(StockTable.getColumnName(i));
     }
     
     // 4. जे-टेबल का सारा डेटा (Rows और Columns) एक्सेल में ट्रांसफर करें
-    for (int r = 0; r < jTable1.getRowCount(); r++) {
+    for (int r = 0; r < StockTable.getRowCount(); r++) {
         org.apache.poi.ss.usermodel.Row row = sheet.createRow(r + 1);
-        for (int c = 0; c < jTable1.getColumnCount(); c++) {
+        for (int c = 0; c < StockTable.getColumnCount(); c++) {
             org.apache.poi.ss.usermodel.Cell cell = row.createCell(c);
-            Object value = jTable1.getValueAt(r, c);
+            Object value = StockTable.getValueAt(r, c);
             if (value != null) {
                 cell.setCellValue(value.toString());
             }
@@ -377,6 +441,16 @@ try {
 }
     }//GEN-LAST:event_btnExportToExcelActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        StockTable.setRowHeight(35);
+StockTable.getTableHeader().setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
+
+// हेडर को लेफ्ट अलाइन (Left Align) करने के लिए
+javax.swing.table.DefaultTableCellRenderer headerRenderer = (javax.swing.table.DefaultTableCellRenderer)
+    StockTable.getTableHeader().getDefaultRenderer();
+headerRenderer.setHorizontalAlignment(javax.swing.JLabel.LEFT);
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -404,6 +478,7 @@ try {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Export_To_PDF;
+    private javax.swing.JTable StockTable;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnExportToExcel;
     private javax.swing.JButton btnSearch;
@@ -413,7 +488,6 @@ try {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private com.toedter.calendar.JDateChooser startdate;
     // End of variables declaration//GEN-END:variables
 }

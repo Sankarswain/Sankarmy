@@ -208,12 +208,13 @@ public void updateInvoiceData(String invoiceNo) {
         btnUpdate = new javax.swing.JButton();
         btnback = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        btnitemdelete = new javax.swing.JButton();
+        btn_invoice_Delete = new javax.swing.JButton();
         btndelete = new javax.swing.JButton();
         btnserch = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnSavePrint = new javax.swing.JButton();
+        btn_total_daywise = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -284,7 +285,7 @@ public void updateInvoiceData(String invoiceNo) {
         txtAmount.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txtAmount.setForeground(new java.awt.Color(204, 0, 0));
 
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sankarmy/plus_4604818.png"))); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon("C:\\Users\\dell\\OneDrive\\Documents\\NetBeansProjects\\Sankarmynew\\src\\sankarmy\\plus_4604818.png")); // NOI18N
         btnAdd.addActionListener(this::btnAddActionPerformed);
 
         jTable1.setBackground(new java.awt.Color(242, 242, 242));
@@ -344,11 +345,11 @@ public void updateInvoiceData(String invoiceNo) {
         jButton4.setText("Clear");
         jButton4.addActionListener(this::jButton4ActionPerformed);
 
-        btnitemdelete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnitemdelete.setForeground(new java.awt.Color(204, 0, 0));
-        btnitemdelete.setText("Item Delete");
-        btnitemdelete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnitemdelete.addActionListener(this::btnitemdeleteActionPerformed);
+        btn_invoice_Delete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btn_invoice_Delete.setForeground(new java.awt.Color(204, 0, 0));
+        btn_invoice_Delete.setText("Invoice Delete");
+        btn_invoice_Delete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_invoice_Delete.addActionListener(this::btn_invoice_DeleteActionPerformed);
 
         btndelete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btndelete.setForeground(new java.awt.Color(204, 0, 0));
@@ -375,93 +376,100 @@ public void updateInvoiceData(String invoiceNo) {
         btnSavePrint.setText("Save And Print");
         btnSavePrint.addActionListener(this::btnSavePrintActionPerformed);
 
+        btn_total_daywise.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btn_total_daywise.setForeground(new java.awt.Color(204, 0, 0));
+        btn_total_daywise.setText("Day wise Total sale");
+        btn_total_daywise.addActionListener(this::btn_total_daywiseActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(23, 23, 23)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(datechose, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(349, 349, 349))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(txt_invoice_no, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(cmbItem, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGap(49, 49, 49)
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtqty, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGap(65, 65, 65)))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnAdd))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnserch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(719, 719, 719)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(30, 30, 30)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbpmode, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_total_daywise, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btndelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btn_invoice_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(datechose, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(349, 349, 349))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_invoice_no, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbItem, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(49, 49, 49)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtqty, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(65, 65, 65)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtprice, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(92, 92, 92)
-                .addComponent(btnAdd)
-                .addGap(36, 36, 36))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbpmode, 0, 259, Short.MAX_VALUE)
-                    .addComponent(txtTotal))
-                .addGap(40, 40, 40))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnserch, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btndelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btnitemdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSavePrint, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(693, 693, 693))
+                .addGap(555, 555, 555))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_invoice_no, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -498,37 +506,44 @@ public void updateInvoiceData(String invoiceNo) {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(cmbpmode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnback)
-                    .addComponent(jButton4)
-                    .addComponent(btnitemdelete)
-                    .addComponent(btndelete)
-                    .addComponent(btnserch)
-                    .addComponent(btnSave)
-                    .addComponent(btnSavePrint))
-                .addGap(30, 30, 30))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(cmbpmode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnback)
+                            .addComponent(jButton4)
+                            .addComponent(btn_invoice_Delete)
+                            .addComponent(btndelete)
+                            .addComponent(btnSave)
+                            .addComponent(btnSavePrint))
+                        .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnserch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_total_daywise)
+                        .addGap(24, 24, 24))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -605,53 +620,86 @@ public void updateInvoiceData(String invoiceNo) {
             }
         }
     private void cmbItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbItemActionPerformed
-        if (cmbItem.getSelectedIndex() == -1 || cmbItem.getSelectedItem() == null) {
-            return;
-        }
+   if (cmbItem.getSelectedIndex() == -1 || cmbItem.getSelectedItem() == null) {
+    return;
+}
 
-        // यह लाइन पक्का करेगी कि जब ID फ़ील्ड कॉम्बो बॉक्स को बदल रही हो, तब यह कोड न चले
-        if (!cmbItem.isFocusOwner()) {
-            return;
-        }
+// यह लाइन पक्का करेगी कि जब ID फ़ील्ड कॉम्बो बॉक्स को बदल रही हो, तब यह कोड न चले
+if (!cmbItem.isFocusOwner()) {
+    return;
+}
 
-        String selectedItem = cmbItem.getSelectedItem().toString();
+String selectedItem = cmbItem.getSelectedItem().toString();
 
-        Connection con = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
+Connection con = null;
+PreparedStatement pst = null;
+ResultSet rs = null;
 
-        try {
-            con = MyConnection.getConnection();
-            if (con != null) {
-                // आइटम नेम के आधार पर डेटाबेस से ID और बाकी डिटेल्स निकालना
-                String sql = "SELECT Item_id,sale_rate FROM items WHERE item_name = ?";
-                pst = con.prepareStatement(sql);
-                pst.setString(1, selectedItem);
-                rs = pst.executeQuery();
+try {
+    con = MyConnection.getConnection();
+    if (con != null) {
+        // SQL क्वेरी: आइटम नेम के आधार पर ID, sale_rate और available_stock निकालना
+        String sql = "SELECT i.Item_id, i.sale_rate, s.available_stock "
+                   + "FROM items i "
+                   + "LEFT JOIN stock_report s ON i.Item_id = s.item_id "
+                   + "WHERE i.item_name = ?";
+        
+        pst = con.prepareStatement(sql);
+        pst.setString(1, selectedItem);
+        rs = pst.executeQuery();
 
-                if (rs.next()) {
-                    // ID को ID फ़ील्ड में सेट करना (अपने सही वेरिएबल नाम जैसे txtId या txtid लिखें)
-                    txtid.setText(rs.getString("Item_id"));
-
-                    // बाकी फ़ील्ड्स को भी अपडेट करना
-                    txtqty.setText("1");
-                    txtprice.setText(rs.getString("sale_rate"));
-                    
-
-                    calculateAmount();
-                }
+        if (rs.next()) {
+            String itemId = rs.getString("Item_id");
+            double saleRate = rs.getDouble("sale_rate");
+            
+            // स्टॉक चेक करना
+            int stock = 0;
+            if (rs.getString("available_stock") != null) {
+                stock = rs.getInt("available_stock");
             }
-        } catch (Exception e) {
-            System.out.println("Error on combo select: " + e.getMessage());
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (pst != null) pst.close();
-                if (con != null) con.close();
-            } catch (Exception ex) {
-                // close error log
+            
+            // 🛑 वैलिडेशन: यदि स्टॉक 0 या उससे कम है तो टेबल में डेटा ऐड नहीं होगा
+            if (stock <= 0) {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Out Of Stock! Stock Negetive", 
+                    "", 
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+                return; // कोड यहीं रुक जाएगा, टेबल में रो ऐड नहीं होगी
             }
+            
+            int defaultQty = 1;
+            double initialAmount = defaultQty * saleRate;
+
+            // टेबल मॉडल प्राप्त करना
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+            
+            // टेबल में नई रो (Row) जोड़ना
+            // Column 0 = ID, 1 = Name, 2 = Qty, 3 = Price, 4 = Amount, 5 = Available Stock
+            model.addRow(new Object[]{
+                itemId,                                 // Column 0
+                selectedItem,                           // Column 1
+                String.valueOf(defaultQty),            // Column 2
+                String.format("%.2f", saleRate),        // Column 3
+                String.format("%.2f", initialAmount),    // Column 4
+                String.valueOf(stock)                   // Column 5
+            });
+            
+            // ग्रैंड टोटल को अपडेट करने के लिए (यदि आवश्यक हो)
+            // calculateGrandTotal(); 
         }
+    }
+} catch (Exception e) {
+    System.out.println("Error on combo select: " + e.getMessage());
+} finally {
+    try {
+        if (rs != null) rs.close();
+        if (pst != null) pst.close();
+        if (con != null) con.close();
+    } catch (Exception ex) {
+        // close error log
+    }
+}
+
 
     }//GEN-LAST:event_cmbItemActionPerformed
 
@@ -978,9 +1026,107 @@ public void updateInvoiceData(String invoiceNo) {
         txtid.requestFocus();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void btnitemdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnitemdeleteActionPerformed
+    private void btn_invoice_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_invoice_DeleteActionPerformed
 
-    }//GEN-LAST:event_btnitemdeleteActionPerformed
+        // 1. User se Invoice Number input lena (Aap text box se bhi le sakte hain)
+String invoiceNoStr = javax.swing.JOptionPane.showInputDialog(this, "Krupaya delete karne ke liye Invoice Number enter karein:");
+
+if (invoiceNoStr == null || invoiceNoStr.trim().isEmpty()) {
+    return; // Agar cancel kiya ya khali chhoda toh ruk jayein
+}
+
+// Check karein ki input valid number hai ya nahi
+int invoiceNo = 0;
+try {
+    invoiceNo = Integer.parseInt(invoiceNoStr.trim());
+} catch (NumberFormatException e) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Krupaya sahi Invoice Number dalein!");
+    return;
+}
+
+// 2. User se double confirmation lena (Safety ke liye)
+int confirmation = javax.swing.JOptionPane.showConfirmDialog(this, 
+        "Kya aap sach me Invoice No: " + invoiceNo + " ko permanently delete karna chahte hain?", 
+        "Confirm Delete", 
+        javax.swing.JOptionPane.YES_NO_OPTION, 
+        javax.swing.JOptionPane.WARNING_MESSAGE);
+
+if (confirmation != javax.swing.JOptionPane.YES_OPTION) {
+    return; // Agar No select kiya toh ruk jayein
+}
+
+Connection con = null;
+PreparedStatement pstDetails = null;
+PreparedStatement pstMaster = null;
+
+try {
+    con = MyConnection.getConnection();
+    if (con == null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Connection nahi mila! Database check karein.");
+        return;
+    }
+
+    // 3. Transaction start (Auto-commit false) - Save code ki tarah safety ke liye
+    con.setAutoCommit(false);
+
+    // 4. STEP 1: Pehle Details Table se delete karein (Child Table)
+    String deleteDetailsQuery = "DELETE FROM sale_invoice_details WHERE invoice_no = ?";
+    pstDetails = con.prepareStatement(deleteDetailsQuery);
+    pstDetails.setInt(1, invoiceNo);
+    pstDetails.executeUpdate();
+
+    // 5. STEP 2: Ab Master Table se delete karein (Master Table)
+    String deleteMasterQuery = "DELETE FROM sales_invoices WHERE invoice_no = ?";
+    pstMaster = con.prepareStatement(deleteMasterQuery);
+    pstMaster.setInt(1, invoiceNo);
+    int masterRowsAffected = pstMaster.executeUpdate();
+
+    // 6. Check karein ki kya woh Invoice database me tha bhi ya nahi
+    if (masterRowsAffected > 0) {
+        // Success - Commit data permanently
+        con.commit();
+        javax.swing.JOptionPane.showMessageDialog(this, "Invoice No: " + invoiceNo + " successfully delete ho gaya!");
+        
+        // Form state ko reset aur update karne ke liye (Aapke save code ki tarah)
+        datechose.setDate(new java.util.Date());
+        cmbpmode.setSelectedItem("Cash");
+        txtTotal.setText("0.00");
+        
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        autoInvoiceNumber(); // Naya active invoice number update karne ke liye
+        txtid.requestFocus();
+    } else {
+        // Agar record nahi mila toh rollback karein aur user ko batayein
+        con.rollback();
+        javax.swing.JOptionPane.showMessageDialog(this, "Yeh Invoice Number database me nahi mila!");
+    }
+
+} catch (Exception e) {
+    // 7. Error aane par Rollback takki data safe rahe
+    try {
+        if (con != null) con.rollback();
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
+    e.printStackTrace();
+    javax.swing.JOptionPane.showMessageDialog(this, "Error while deleting: " + e.getMessage());
+} finally {
+    // 8. Connections safely close karein
+    try {
+        if (pstDetails != null) pstDetails.close();
+        if (pstMaster != null) pstMaster.close();
+        if (con != null) {
+            con.setAutoCommit(true);
+            con.close();
+        }
+    } catch (Exception ex) {
+        ex.printStackTrace();
+    }
+}
+
+    }//GEN-LAST:event_btn_invoice_DeleteActionPerformed
 
     private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
     Connection con = null;
@@ -1242,114 +1388,147 @@ public void updateInvoiceData(String invoiceNo) {
 
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
     String id = txtid.getText().trim();
-    // Agar ID field khali hai, toh fields clear karein aur ruk jayein
-    if (id.isEmpty()) {
-        clearFields();
-        return;
-    }
-
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-
-    try {
-        con = MyConnection.getConnection();
-
-        if (con != null) {
-            // 1. Database se Item ki details nikalna
-            String sql = "SELECT item_name, sale_rate FROM items WHERE Item_id = ?";
-            pst = con.prepareStatement(sql);
-            pst.setString(1, id);
-
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                String itemName = rs.getString("item_name");
-                double price = rs.getDouble("sale_rate");
-                int quantity = 1; // Direct enter par default quantity 1 rahegi
-                double amount = quantity * price;
-
-                // UI fields mein dikhane ke liye (Optional, par accha lagta hai)
-                cmbItem.setSelectedItem(itemName);
-                if (cmbItem.getSelectedIndex() == -1) {
-                    cmbItem.addItem(itemName);
-                    cmbItem.setSelectedItem(itemName);
-                }
-                txtqty.setText(String.valueOf(quantity));
-                txtprice.setText(String.format("%.2f", price));
-                txtAmount.setText(String.format("%.2f", amount));
-
-                // 2. Table ka Model nikalna aur Duplicate check karna
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                int rowCount = model.getRowCount();
-                boolean itemExists = false;
-
-                for (int i = 0; i < rowCount; i++) {
-                    String tableId = model.getValueAt(i, 0).toString(); // Column 0: ID
-
-                    if (tableId.equals(id)) {
-                        // Agar item pehle se table mein hai, toh sirf Quantity +1 karein
-                        int oldQty = Integer.parseInt(model.getValueAt(i, 2).toString()); // Column 2: Qty
-                        int newQty = oldQty + 1;
-                        double newAmount = newQty * price;
-
-                        model.setValueAt(String.valueOf(newQty), i, 2); // Qty update
-                        model.setValueAt(String.format("%.2f", newAmount), i, 4); // Amount update
-
-                        itemExists = true;
-                        break;
-                    }
-                }
-
-                // 3. Agar item table mein nahi tha, toh Nayi Row insert karein
-                if (!itemExists) {
-                    model.addRow(new Object[]{
-                        id, 
-                        itemName, 
-                        String.valueOf(quantity), 
-                        String.format("%.2f", price), 
-                        String.format("%.2f", amount)
-                    });
-                }
-
-                // 4. Grand Total (Total Amount) nikalne ka loop
-                double total = 0;
-                for (int i = 0; i < jTable1.getRowCount(); i++) {
-                    Object value = jTable1.getValueAt(i, 4); // Column 4: Amount
-                    if (value != null) {
-                        total += Double.parseDouble(value.toString());
-                    }
-                }
-
-                // Total textbox mein set karein
-                txtTotal.setText(String.format("%.2f", total));
-
-                // 5. Naye item ke liye reset aur focus automatic ready karein
-                txtid.setText("");
-                txtprice.setText("");
-                txtAmount.setText("");
-                txtid.requestFocus();
-
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "Item ID nahi mili! Krupaya check karein.");
-                txtid.selectAll();
-                txtid.requestFocus();
-            }
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-    } finally {
-        try {
-            if (rs != null) rs.close();
-            if (pst != null) pst.close();
-            if (con != null) con.close();
-        } catch (Exception ex) {
-            System.out.println("Error closing resources: " + ex.getMessage());
-        }
-    
+// Agar ID field khali hai, toh fields clear karein aur ruk jayein
+if (id.isEmpty()) {
+    clearFields();
+    return;
 }
 
+Connection con = null;
+PreparedStatement pst = null;
+ResultSet rs = null;
+
+try {
+    con = MyConnection.getConnection();
+
+    if (con != null) {
+        // 1. Database se Item details aur Stock Report se available_stock nikalna (Aapka Naya SQL Logic)
+        String sql = "SELECT i.item_name, i.sale_rate, s.available_stock "
+                   + "FROM items i "
+                   + "LEFT JOIN stock_report s ON i.Item_id = s.item_id "
+                   + "WHERE i.Item_id = ?";
+        
+        pst = con.prepareStatement(sql);
+        pst.setString(1, id);
+
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+            String itemName = rs.getString("item_name");
+            double price = rs.getDouble("sale_rate");
+            
+            // Stock check karna
+            int stock = 0;
+            if (rs.getString("available_stock") != null) {
+                stock = rs.getInt("available_stock");
+            }
+
+            // 🛑 VALIDATION: Agar stock 0 ya negative hai toh ruk jayein
+            if (stock <= 0) {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Out Of Stock! Stock Negative", 
+                    "", 
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+                txtid.setText("");
+                txtid.requestFocus();
+                return; 
+            }
+
+            int quantity = 1; // Direct enter par default quantity 1 rahegi
+            double amount = quantity * price;
+
+            // UI fields mein dikhane ke liye
+            cmbItem.setSelectedItem(itemName);
+            if (cmbItem.getSelectedIndex() == -1) {
+                cmbItem.addItem(itemName);
+                cmbItem.setSelectedItem(itemName);
+            }
+            txtqty.setText(String.valueOf(quantity));
+            txtprice.setText(String.format("%.2f", price));
+            txtAmount.setText(String.format("%.2f", amount));
+
+            // 2. Table ka Model nikalna aur Duplicate check karna
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            int rowCount = model.getRowCount();
+            boolean itemExists = false;
+
+            for (int i = 0; i < rowCount; i++) {
+                String tableId = model.getValueAt(i, 0).toString(); // Column 0: ID
+
+                if (tableId.equals(id)) {
+                    // Agar item pehle se table mein hai, toh sirf Quantity +1 karein
+                    int oldQty = Integer.parseInt(model.getValueAt(i, 2).toString()); // Column 2: Qty
+                    int newQty = oldQty + 1;
+
+                    // 🛑 Stock Limit Validation Check
+                    if (newQty > stock) {
+                        javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Stock limit se zyada item add nahi ho sakta! Available: " + stock, 
+                            "Warning", 
+                            javax.swing.JOptionPane.WARNING_MESSAGE);
+                        txtid.setText("");
+                        txtid.requestFocus();
+                        return;
+                    }
+
+                    double newAmount = newQty * price;
+
+                    model.setValueAt(String.valueOf(newQty), i, 2); // Column 2: Qty update
+                    model.setValueAt(String.format("%.2f", newAmount), i, 4); // Column 4: Amount update
+
+                    itemExists = true;
+                    break;
+                }
+            }
+
+            // 3. Agar item table mein nahi tha, toh Nayi Row insert karein (Aapke exact columns ke hisab se)
+            if (!itemExists) {
+                model.addRow(new Object[]{
+                    id,                                     // Column 0
+                    itemName,                               // Column 1
+                    String.valueOf(quantity),               // Column 2
+                    String.format("%.2f", price),           // Column 3
+                    String.format("%.2f", amount),          // Column 4
+                    String.valueOf(stock)                   // Column 5: Available Stock
+                });
+            }
+
+            // 4. Grand Total (Total Amount) nikalne ka loop
+            double total = 0;
+            for (int i = 0; i < jTable1.getRowCount(); i++) {
+                Object value = jTable1.getValueAt(i, 4); // Column 4: Amount
+                if (value != null) {
+                    total += Double.parseDouble(value.toString());
+                }
+            }
+
+            // Total textbox mein set karein
+            txtTotal.setText(String.format("%.2f", total));
+
+            // 5. Naye item ke liye reset aur focus automatic ready karein
+            txtid.setText("");
+            txtprice.setText("");
+            txtAmount.setText("");
+            txtid.requestFocus();
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Item ID nahi mili! Krupaya check karein.");
+            txtid.selectAll();
+            txtid.requestFocus();
+        }
+    }
+} catch (Exception e) {
+    e.printStackTrace();
+    javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+} finally {
+    try {
+        if (rs != null) rs.close();
+        if (pst != null) pst.close();
+        if (con != null) con.close();
+    } catch (Exception ex) {
+        System.out.println("Error closing resources: " + ex.getMessage());
+    }
+}
 
     }//GEN-LAST:event_txtidActionPerformed
 
@@ -1368,8 +1547,240 @@ headerRenderer.setHorizontalAlignment(javax.swing.JLabel.LEFT);
     }//GEN-LAST:event_formWindowOpened
 
     private void btnSavePrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePrintActionPerformed
-        // TODO add your handling code here:
+ Connection con = null;
+    PreparedStatement pstMaster = null;
+    PreparedStatement pstDetails = null;
+    java.sql.ResultSet rsKeys = null; // Generated key store karne ke liye
+
+    // 1. Inputs fetch aur trim karein
+    String totalAmtStr = txtTotal.getText().trim();
+    String payMode = cmbpmode.getSelectedItem() != null ? cmbpmode.getSelectedItem().toString().trim() : "";
+
+    // 2. Validation Check (Invoice No check hata diya kyunki ab ye auto-increment hai)
+    if (datechose.getDate() == null ||
+        jTable1.getRowCount() == 0 ||
+        totalAmtStr.isEmpty() ||
+        totalAmtStr.equals("0") ||
+        totalAmtStr.equals("0.0") ||
+        totalAmtStr.equals("0.00") ||
+        payMode.isEmpty()) {
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Krupaya check karein: Date, Table ya Total Amount khali to nahi hai?");
+        return;
+    }
+
+    try {
+        // 3. Database Connection checked
+        con = MyConnection.getConnection();
+        if (con == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Connection nahi mila! Database check karein.");
+            return;
+        }
+
+        // 4. Transaction start (Auto-commit false)
+        con.setAutoCommit(false);
+
+        // Number format safely check karne ke liye
+        double finalTotalAmt;
+        try {
+            finalTotalAmt = Double.parseDouble(totalAmtStr);
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Total Amount sahi number format me nahi hai!");
+            return;
+        }
+
+        // 5. Master Table Entry - FIXED: invoice_no hata diya aur RETURN_GENERATED_KEYS add kiya
+        String query1 = "INSERT INTO sales_invoices (date, payment_mode, total_amount) VALUES (?, ?, ?)";
+        pstMaster = con.prepareStatement(query1, java.sql.Statement.RETURN_GENERATED_KEYS);
+
+        // Date Format safely database ke liye convert karein
+        java.util.Date selectedDate = datechose.getDate();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = sdf.format(selectedDate);
+        pstMaster.setString(1, formattedDate);
+
+        pstMaster.setString(2, payMode);
+        pstMaster.setDouble(3, finalTotalAmt);
+
+        pstMaster.executeUpdate();
+
+        // **Sabse Important Step**: Auto-Generated Invoice Number nikalna
+        int generatedInvoiceNo = 0;
+        rsKeys = pstMaster.getGeneratedKeys();
+        if (rsKeys.next()) {
+            generatedInvoiceNo = rsKeys.getInt(1); // Ye hai aapka naya auto-incremented invoice_no
+        } else {
+            throw new Exception("Invoice Number generate nahi ho paya!");
+        }
+
+        // 6. Detail Table (sale_invoice_details) Entry loop
+        String query2 = "INSERT INTO sale_invoice_details (invoice_no, Item_id, item_name, quantity, sale_rate, sub_total) VALUES (?, ?, ?, ?, ?, ?)";
+        pstDetails = con.prepareStatement(query2);
+
+        int totalRows = jTable1.getRowCount();
+
+        for (int i = 0; i < totalRows; i++) {
+            // Table ke cell values ko safely handle karein
+            String ItemIdStr = jTable1.getValueAt(i, 0) != null ? jTable1.getValueAt(i, 0).toString().trim() : "0";
+            String itemName = jTable1.getValueAt(i, 1) != null ? jTable1.getValueAt(i, 1).toString().trim() : "";
+            String qtyStr = jTable1.getValueAt(i, 2) != null ? jTable1.getValueAt(i, 2).toString().trim() : "0";
+            String rateStr = jTable1.getValueAt(i, 3) != null ? jTable1.getValueAt(i, 3).toString().trim() : "0";
+            String subTotalStr = jTable1.getValueAt(i, 4) != null ? jTable1.getValueAt(i, 4).toString().trim() : "0";
+
+            // Row validation
+            if(itemName.isEmpty()) {
+                throw new Exception("Row " + (i+1) + " me Item Name khali hai!");
+            }
+
+            // Database se mili hui generatedInvoiceNo ko pehle parameter me daalein
+            pstDetails.setInt(1, generatedInvoiceNo); 
+            pstDetails.setInt(2, Integer.parseInt(ItemIdStr));
+            pstDetails.setString(3, itemName);
+            pstDetails.setInt(4, Integer.parseInt(qtyStr));
+            pstDetails.setDouble(5, Double.parseDouble(rateStr));
+            pstDetails.setDouble(6, Double.parseDouble(subTotalStr));
+
+            pstDetails.addBatch();
+        }
+
+        pstDetails.executeBatch();
+
+        // 7. Success - Commit data permanently
+             con.commit();
+        javax.swing.JOptionPane.showMessageDialog(this, "Saved Successfully!");
+
+        // 🔥 AAPKE USI FORM SE YAHAN CALL HOGA 🔥
+        printJasperInvoice(generatedInvoiceNo);
+
+        // 8. Fields reset form state clear karein (Aapka purana baki code...)
+        datechose.setDate(new java.util.Date());
+
+        // 8. Fields reset form state clear karein
+        datechose.setDate(new java.util.Date());
+        cmbpmode.setSelectedItem("Cash");
+        txtTotal.setText("0.00");
+
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        // Agli entry ke liye screen par naya number dikhana hai toh ye function chalayein
+        autoInvoiceNumber(); 
+        txtid.requestFocus(); 
+
+    } catch (Exception e) {
+        // 9. Error aane par Rollback
+        try {
+            if (con != null) con.rollback();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        e.printStackTrace();
+        javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    } finally {
+        // 10. Connections safely close karein
+        try {
+            if (rsKeys != null) rsKeys.close();
+            if (pstMaster != null) pstMaster.close();
+            if (pstDetails != null) pstDetails.close();
+            if (con != null) {
+                con.setAutoCommit(true);
+                con.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }     
     }//GEN-LAST:event_btnSavePrintActionPerformed
+
+    private void btn_total_daywiseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_total_daywiseActionPerformed
+                                                  
+    // 1. DateChooser se selected date nikalna
+    if (datechose.getDate() == null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Krupaya pehle koi Date select karein!");
+        return;
+    }
+
+    try {
+        java.sql.Connection connection = MyConnection.getConnection();
+        
+        // Date format convert karna database compatibility ke liye (yyyy-MM-dd)
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        String selectedDateStr = sdf.format(datechose.getDate());
+        
+        // 2. Nayi day wise XML file ko stream se load karna
+        java.io.InputStream reportStream = getClass().getResourceAsStream("/daysale.jrxml");
+        if (reportStream == null) {
+            reportStream = new java.io.FileInputStream(new java.io.File("src/daysale.jrxml"));
+        }
+        
+        if (reportStream == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: daysale.jrxml file nahi mili!");
+            return;
+        }
+        
+        // 3. Report compile karna
+        net.sf.jasperreports.engine.JasperReport jasperReport = 
+            net.sf.jasperreports.engine.JasperCompileManager.compileReport(reportStream);
+        
+        // 4. Parameter pass karna (Yahan hum 'sale_date' pass kar rahe hain)
+        java.util.Map<String, Object> parameters = new java.util.HashMap<>();
+        parameters.put("sale_date", selectedDateStr);
+        
+        // 5. Data fill karna
+        net.sf.jasperreports.engine.JasperPrint jasperPrint = 
+            net.sf.jasperreports.engine.JasperFillManager.fillReport(jasperReport, parameters, connection);
+        
+        // 6. View Report (Iske liye screen par full preview popup aana chahiye)
+        net.sf.jasperreports.view.JasperViewer.viewReport(jasperPrint, false);
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        javax.swing.JOptionPane.showMessageDialog(this, "Report Error: " + e.getMessage());
+    }
+
+
+    }//GEN-LAST:event_btn_total_daywiseActionPerformed
+
+    private void printJasperInvoice(int invoiceNo) {
+   
+    try {
+        // 1. Database connection lena
+        java.sql.Connection connection = MyConnection.getConnection();
+        
+        // 🔥 BADLAV YAHAN HAI: Is line ko fresh input stream load karne ke liye yahan dalein 🔥
+        java.io.InputStream reportStream = getClass().getResourceAsStream("/receipt.jrxml");
+        if (reportStream == null) {
+            reportStream = new java.io.FileInputStream(new java.io.File("src/receipt.jrxml"));
+        }
+        
+        // 2. Agar dono jagah file na mile toh check karein
+        if (reportStream == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: receipt.jrxml file nahi mili!");
+            return;
+        }
+        
+        // 3. Report design compile karna
+        net.sf.jasperreports.engine.JasperReport jasperReport = 
+            net.sf.jasperreports.engine.JasperCompileManager.compileReport(reportStream);
+        
+        // 4. Invoice number ko parameter me pass karna
+        java.util.Map<String, Object> parameters = new java.util.HashMap<>();
+        parameters.put("invoice_no", invoiceNo);
+        
+        // 5. Data fill karna
+        net.sf.jasperreports.engine.JasperPrint jasperPrint = 
+            net.sf.jasperreports.engine.JasperFillManager.fillReport(jasperReport, parameters, connection);
+        
+        // 6. Direct Print Command
+        net.sf.jasperreports.engine.JasperPrintManager.printReport(jasperPrint, false);
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        javax.swing.JOptionPane.showMessageDialog(this, "Print Error: " + e.getMessage());
+    }
+
+
+}
 
     /**
      * @param args the command line arguments
@@ -1401,9 +1812,10 @@ headerRenderer.setHorizontalAlignment(javax.swing.JLabel.LEFT);
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSavePrint;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btn_invoice_Delete;
+    private javax.swing.JButton btn_total_daywise;
     private javax.swing.JButton btnback;
     private javax.swing.JButton btndelete;
-    private javax.swing.JButton btnitemdelete;
     private javax.swing.JButton btnserch;
     private javax.swing.JComboBox<String> cmbItem;
     private javax.swing.JComboBox<String> cmbpmode;
