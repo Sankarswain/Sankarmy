@@ -30,6 +30,8 @@ public class NewJFrame1 extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         SaleTable = new javax.swing.JTable();
+        btnExcel_To_Export = new javax.swing.JButton();
+        btnExportToPDF = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,6 +94,16 @@ public class NewJFrame1 extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(SaleTable);
 
+        btnExcel_To_Export.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExcel_To_Export.setForeground(new java.awt.Color(204, 0, 0));
+        btnExcel_To_Export.setText("Export To Excel");
+        btnExcel_To_Export.addActionListener(this::btnExcel_To_ExportActionPerformed);
+
+        btnExportToPDF.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExportToPDF.setForeground(new java.awt.Color(204, 0, 0));
+        btnExportToPDF.setText("Export To PDF");
+        btnExportToPDF.addActionListener(this::btnExportToPDFActionPerformed);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -99,39 +111,48 @@ public class NewJFrame1 extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(startdate, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
-                        .addGap(33, 33, 33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(enddate, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99)
+                        .addGap(18, 18, 18)
                         .addComponent(cmbmode, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch)
-                        .addGap(37, 37, 37)
-                        .addComponent(btnBack)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnExportToPDF)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnExcel_To_Export)
+                        .addGap(27, 27, 27))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(enddate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(startdate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cmbmode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSearch)
                         .addComponent(btnBack)
-                        .addComponent(btnSearch)))
+                        .addComponent(btnExcel_To_Export)
+                        .addComponent(btnExportToPDF))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enddate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(198, 198, 198))
@@ -170,7 +191,7 @@ public class NewJFrame1 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,6 +389,145 @@ headerRenderer.setHorizontalAlignment(javax.swing.JLabel.LEFT);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnExcel_To_ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcel_To_ExportActionPerformed
+         // 1. सबसे पहले चेक करें कि आपकी जे-टेबल (jTable1) में डेटा है या नहीं
+if (SaleTable.getRowCount() == 0) {
+    javax.swing.JOptionPane.showMessageDialog(this, "टेबल में एक्सपोर्ट करने के लिए कोई डेटा नहीं है!");
+    return;
+}
+
+try {
+    // 2. नया एक्सेल वर्कबुक और शीट बनाएं
+    org.apache.poi.ss.usermodel.Workbook workbook = new org.apache.poi.xssf.usermodel.XSSFWorkbook();
+    org.apache.poi.ss.usermodel.Sheet sheet = workbook.createSheet("Sale Report");
+    
+    // 3. एक्सेल में हेडर रो (Columns के नाम) बनाएं
+    org.apache.poi.ss.usermodel.Row headerRow = sheet.createRow(0);
+    for (int i = 0; i < SaleTable.getColumnCount(); i++) {
+        org.apache.poi.ss.usermodel.Cell cell = headerRow.createCell(i);
+        cell.setCellValue(SaleTable.getColumnName(i));
+    }
+    
+    // 4. जे-टेबल का सारा डेटा (Rows और Columns) एक्सेल में ट्रांसफर करें
+    for (int r = 0; r < SaleTable.getRowCount(); r++) {
+        org.apache.poi.ss.usermodel.Row row = sheet.createRow(r + 1);
+        for (int c = 0; c < SaleTable.getColumnCount(); c++) {
+            org.apache.poi.ss.usermodel.Cell cell = row.createCell(c);
+            Object value = SaleTable.getValueAt(r, c);
+            if (value != null) {
+                cell.setCellValue(value.toString());
+            }
+        }
+    }
+    
+    // 5. डायरेक्ट डेस्कटॉप का पाथ निकालें (OneDrive को ध्यान में रखते हुए)
+    String userHome = System.getProperty("user.home");
+    
+    // पहले चेक करेंगे कि क्या वनड्राइव वाला डेस्कटॉप मौजूद है
+    String folderPath = userHome + java.io.File.separator + "OneDrive" + java.io.File.separator + "Desktop" + java.io.File.separator + "MyPersonalReports";
+    java.io.File directory = new java.io.File(folderPath);
+    
+    // अगर वनड्राइव वाला डेस्कटॉप नहीं मिलता, तो नॉर्मल डेस्कटॉप का इस्तेमाल करेंगे
+    if (!directory.getParentFile().exists()) {
+        folderPath = userHome + java.io.File.separator + "Desktop" + java.io.File.separator + "MyPersonalReports";
+        directory = new java.io.File(folderPath);
+    }
+    
+    // 6. डेस्कटॉप पर नया पर्सनल फोल्डर बनाएं
+    if (!directory.exists()) {
+        directory.mkdirs(); 
+    }
+    
+    // 7. फाइल का नाम और पूरा रास्ता (Path) सेट करें
+    String filePath = folderPath + java.io.File.separator + "SaleReport.xlsx";
+    // 8. फाइल को बिना संवाद बॉक्स (Dialog) के सीधे बैकग्राउंड में राइट और क्लोज करें
+    try (java.io.FileOutputStream out = new java.io.FileOutputStream(filePath)) {
+        workbook.write(out);
+        workbook.close();
+        
+        // सफलता का मैसेज
+        javax.swing.JOptionPane.showMessageDialog(this, "file destop 'MyPersonalReports' save file!");
+    }
+    
+} catch (Exception e) {
+    e.printStackTrace();
+    javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+}
+
+    }//GEN-LAST:event_btnExcel_To_ExportActionPerformed
+
+    private void btnExportToPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportToPDFActionPerformed
+          // 1. सबसे पहले चेक करें कि आपकी जे-टेबल (jTable1) में डेटा है या नहीं
+if (SaleTable.getRowCount() == 0) {
+    javax.swing.JOptionPane.showMessageDialog(this, "table me koi data nehi he");
+    return;
+}
+
+try {
+    // 2. डायरेक्ट डेस्कटॉप (Desktop) का पाथ निकालें (OneDrive को ध्यान में रखते हुए)
+    String userHome = System.getProperty("user.home");
+    String folderPath = userHome + java.io.File.separator + "OneDrive" + java.io.File.separator + "Desktop" + java.io.File.separator + "MyPersonalReports";
+    java.io.File directory = new java.io.File(folderPath);
+    
+    // अगर वनड्राइव वाला डेस्कटॉप नहीं मिलता, तो नॉर्मल डेस्कटॉप का इस्तेमाल करेंगे
+    if (!directory.getParentFile().exists()) {
+        folderPath = userHome + java.io.File.separator + "Desktop" + java.io.File.separator + "MyPersonalReports";
+        directory = new java.io.File(folderPath);
+    }
+    
+    // अगर फोल्डर डेस्कटॉप पर नहीं बना है, तो कोड उसे अपने आप बना देगा
+    if (!directory.exists()) {
+        directory.mkdirs(); 
+    }
+    
+    // PDF फाइल का पूरा नाम और रास्ता (Path) सेट करें
+    String filePath = folderPath + java.io.File.separator + "SaleReport.pdf";
+
+    // 3. iText 9+ के मुख्य ऑब्जेक्ट्स सेटअप करें
+    com.itextpdf.kernel.pdf.PdfWriter writer = new com.itextpdf.kernel.pdf.PdfWriter(filePath);
+    com.itextpdf.kernel.pdf.PdfDocument pdfDoc = new com.itextpdf.kernel.pdf.PdfDocument(writer);
+    com.itextpdf.layout.Document document = new com.itextpdf.layout.Document(pdfDoc);
+
+    // 4. iText 9 के अनुसार सिंपल और एरर-फ्री हेडिंग बनाएं
+    com.itextpdf.layout.element.Paragraph heading = new com.itextpdf.layout.element.Paragraph("Sale Report");
+    heading.setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER);
+    document.add(heading);
+    
+    // थोड़ा स्पेस देने के लिए खाली पैराग्राफ
+    document.add(new com.itextpdf.layout.element.Paragraph("\n"));
+
+    // 5. टेबल के कॉलम्स की संख्या के हिसाब से iText टेबल सेटअप करें
+    int totalColumns = SaleTable.getColumnCount();
+    com.itextpdf.layout.element.Table pdfTable = new com.itextpdf.layout.element.Table(totalColumns);
+
+    // 6. PDF टेबल में हेडर (Columns के नाम) जोड़ें
+    for (int i = 0; i < totalColumns; i++) {
+        com.itextpdf.layout.element.Cell cell = new com.itextpdf.layout.element.Cell();
+        cell.add(new com.itextpdf.layout.element.Paragraph(SaleTable.getColumnName(i)));
+        pdfTable.addHeaderCell(cell);
+    }
+
+    // 7. jTable1 का सारा डेटा (Rows और Columns) PDF टेबल में ट्रांसफर करें
+    for (int r = 0; r < SaleTable.getRowCount(); r++) {
+        for (int c = 0; c < totalColumns; c++) {
+            Object value = SaleTable.getValueAt(r, c);
+            String cellValue = (value != null) ? value.toString() : "";
+            pdfTable.addCell(new com.itextpdf.layout.element.Cell().add(new com.itextpdf.layout.element.Paragraph(cellValue)));
+        }
+    }
+
+    // 8. टेबल को डॉक्यूमेंट में जोड़ें और फाइल बंद करें
+    document.add(pdfTable);
+    document.close();
+    javax.swing.JOptionPane.showMessageDialog(this, "PDF save");
+    // सफलता का मैसेज
+   } catch (Exception e) {
+    e.printStackTrace();
+    javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+}
+    
+    }//GEN-LAST:event_btnExportToPDFActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -396,6 +556,8 @@ headerRenderer.setHorizontalAlignment(javax.swing.JLabel.LEFT);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable SaleTable;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnExcel_To_Export;
+    private javax.swing.JButton btnExportToPDF;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cmbmode;
     private com.toedter.calendar.JDateChooser enddate;

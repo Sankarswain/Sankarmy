@@ -158,7 +158,6 @@ public void updateInvoiceData(String invoiceNo) {
         btnserch = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        btnSaveprint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1610, 785));
@@ -310,7 +309,7 @@ public void updateInvoiceData(String invoiceNo) {
 
         btnitemdelete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnitemdelete.setForeground(new java.awt.Color(204, 0, 0));
-        btnitemdelete.setText("Item Delete");
+        btnitemdelete.setText("Delete Invoice");
         btnitemdelete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnitemdelete.addActionListener(this::btnitemdeleteActionPerformed);
 
@@ -333,11 +332,6 @@ public void updateInvoiceData(String invoiceNo) {
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 0, 0));
         jLabel12.setText("Purchase invoice barcode");
-
-        btnSaveprint.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        btnSaveprint.setForeground(new java.awt.Color(204, 0, 0));
-        btnSaveprint.setText("Save And Print");
-        btnSaveprint.addActionListener(this::btnSaveprintActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -394,19 +388,17 @@ public void updateInvoiceData(String invoiceNo) {
                         .addContainerGap()
                         .addComponent(btnserch, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btndelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnitemdelete)
+                        .addComponent(btndelete, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
+                        .addComponent(btnitemdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSaveprint, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(540, 540, 540)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -476,8 +468,7 @@ public void updateInvoiceData(String invoiceNo) {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel11)
-                        .addGap(4, 4, 4)))
+                        .addComponent(jLabel11)))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
@@ -486,8 +477,7 @@ public void updateInvoiceData(String invoiceNo) {
                     .addComponent(btnitemdelete)
                     .addComponent(btndelete)
                     .addComponent(btnserch)
-                    .addComponent(btnSave)
-                    .addComponent(btnSaveprint))
+                    .addComponent(btnSave))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -495,13 +485,14 @@ public void updateInvoiceData(String invoiceNo) {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -1106,106 +1097,51 @@ public void autoInvoiceNumber() {
     }//GEN-LAST:event_btnserchActionPerformed
 
     private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
-          Connection con = null;
-    PreparedStatement pstDeleteDetails = null;
-    PreparedStatement pstDeleteMaster = null;
+          // 1. DefaultTableModel nikalen row remove karne ke liye
+    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
 
-    // 1. Invoice Number fetch aur trim karein
-    String invoiceNoStr = txt_invoice_no.getText().trim();
+    // 2. Kaunsi row select hui hai uska index nikalen
+    int selectedRowIndex = jTable1.getSelectedRow();
 
-    // 2. Validation Check (Sirf Invoice Number chahiye delete ke liye)
-    if (invoiceNoStr.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Krupaya pehle wo Invoice select karein jise delete karna hai!");
+    // 3. Validation: Check karein ki user ne table me koi row select ki hai ya nahi
+    if (selectedRowIndex == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Krupaya delete karne ke liye table se ek row select karein!");
         return;
     }
 
-    // 3. User se confirmation lein (Accidental delete se bachne ke liye)
-    int confirmation = javax.swing.JOptionPane.showConfirmDialog(this, 
-            "Kya aap pakka is Invoice aur iske sabhi items ko DELETE karna chahte hain?", 
-            "Confirm Delete", 
-            javax.swing.JOptionPane.YES_NO_OPTION, 
-            javax.swing.JOptionPane.WARNING_MESSAGE);
+    // 4. User se confirmation lein
+    int dialogResult = javax.swing.JOptionPane.showConfirmDialog(
+        this,
+        "Do you want to delete this row?",
+        "Confirm Delete",
+        javax.swing.JOptionPane.YES_NO_OPTION
+    );
+
+    if (dialogResult == javax.swing.JOptionPane.YES_OPTION) {
+        // 5. Table se selected row delete karein
+        model.removeRow(selectedRowIndex);
+
+        // 6. Total Amount recalculate karein
+        double newTotal = 0.0;
+        int totalRows = jTable1.getRowCount();
+
+        for (int i = 0; i < totalRows; i++) {
+            // Column 4 (Sub-Total) se value safely nikalen
+            String subTotalStr = jTable1.getValueAt(i, 4) != null ? jTable1.getValueAt(i, 4).toString().trim() : "0";
             
-    if (confirmation != javax.swing.JOptionPane.YES_OPTION) {
-        return; // Agar user 'No' select kare toh delete cancel ho jaye
-    }
-
-    try {
-        // 4. Database Connection checked
-        con = MyConnection.getConnection(); 
-        if (con == null) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Connection nahi mila! Database check karein.");
-            return;
-        }
-
-        // 5. Transaction start (Auto-commit false)
-        con.setAutoCommit(false); 
-
-        // Number format check karein
-        int finalInvoiceNo;
-        try {
-            finalInvoiceNo = Integer.parseInt(invoiceNoStr);
-        } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Invoice Number ka format sahi nahi hai!");
-            return;
-        }
-
-        // 6. Step 1: Detail Table se saare items pehle DELETE karein
-        String deleteDetailsQuery = "DELETE FROM invoice_details WHERE invoice_no = ?";
-        pstDeleteDetails = con.prepareStatement(deleteDetailsQuery);
-        pstDeleteDetails.setInt(1, finalInvoiceNo);
-        pstDeleteDetails.executeUpdate();
-
-        // 7. Step 2: Master Table se main invoice record DELETE karein
-        String deleteMasterQuery = "DELETE FROM invoices WHERE invoice_no = ?";
-        pstDeleteMaster = con.prepareStatement(deleteMasterQuery);
-        pstDeleteMaster.setInt(1, finalInvoiceNo);
-        
-        int masterRowsAffected = pstDeleteMaster.executeUpdate();
-        if (masterRowsAffected == 0) {
-            throw new Exception("Ye Invoice Number database me nahi mila ya pehle hi delete ho chuka hai!");
-        }
-
-        // 8. Success - Commit transaction permanently
-        con.commit(); 
-        javax.swing.JOptionPane.showMessageDialog(this, "Invoice Successfully Delete Ho Gaya!");
-        
-        // 9. Fields aur Form state clear karein
-        datechose.setDate(new java.util.Date()); 
-        cmbpmode.setSelectedItem("Cash");         
-        cmbpartyname.setSelectedItem("Sankar");   
-        txtTotal.setText("0.00");
-        txt_invoice_no.setText(""); 
-        
-        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        
-        // Naya number generate karein aur focus shift karein
-        autoInvoiceNumber();
-        txtid.requestFocus();
-
-    } catch (Exception e) {
-        // 10. Kuch bhi fail hone par ROLLBACK karein (Data safe rahega)
-        try {
-            if (con != null) con.rollback(); 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        e.printStackTrace();
-        javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-    } finally {
-        // 11. Connections properly close karein
-        try {
-            if (pstDeleteDetails != null) pstDeleteDetails.close();
-            if (pstDeleteMaster != null) pstDeleteMaster.close();
-            if (con != null) {
-                con.setAutoCommit(true); 
-                con.close();
+            try {
+                newTotal += Double.parseDouble(subTotalStr);
+            } catch (NumberFormatException e) {
+                // Invalid data ho toh skip karein
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
+
+        // 7. Naye total ko txtTotal field me dikhayein
+        txtTotal.setText(String.format("%.2f", newTotal));
     }
+
+
+
     }//GEN-LAST:event_btndeleteActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1269,16 +1205,114 @@ public void autoInvoiceNumber() {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnitemdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnitemdeleteActionPerformed
-        
+         // 1. Screen par dikh rahe txtid textfield se Invoice Number fetch aur trim karein
+    String invoiceNoStr = txt_invoice_no.getText().trim();
+
+    // Validation Check: Khali toh nahi hai?
+    if (invoiceNoStr.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Screen par koi Invoice Number nahi mila jise delete kiya ja sake!");
+        return;
+    }
+
+    // String ko Integer me convert karein safely
+    int invoiceNo = 0;
+    try {
+        invoiceNo = Integer.parseInt(invoiceNoStr);
+        if (invoiceNo <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Galat Invoice Number! Krupaya pehle koi valid invoice load karein.");
+            return;
+        }
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Invoice ID sahi number format me nahi hai!");
+        return;
+    }
+
+    // 2. User se double confirmation lena (Safety ke liye bahut zaroori hai)
+    int confirmation = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "Kya aap sach me Invoice No: " + invoiceNo + " ko permanently delete karna chahte hain?", 
+            "Confirm Delete", 
+            javax.swing.JOptionPane.YES_NO_OPTION, 
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+
+    if (confirmation != javax.swing.JOptionPane.YES_OPTION) {
+        return; // Agar No select kiya toh ruk jayein
+    }
+
+    Connection con = null;
+    PreparedStatement pstDetails = null;
+    PreparedStatement pstMaster = null;
+
+    try {
+        con = MyConnection.getConnection();
+        if (con == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Connection nahi mila! Database check karein.");
+            return;
+        }
+
+        // 3. Transaction start (Auto-commit false) - Safety ke liye
+        con.setAutoCommit(false);
+
+        // 4. STEP 1: Pehle Details Table se delete karein (Child Table)
+        String deleteDetailsQuery = "DELETE FROM invoice_details WHERE invoice_no = ?";
+        pstDetails = con.prepareStatement(deleteDetailsQuery);
+        pstDetails.setInt(1, invoiceNo);
+        pstDetails.executeUpdate();
+
+        // 5. STEP 2: Ab Master Table se delete karein (Master Table)
+        String deleteMasterQuery = "DELETE FROM invoices WHERE invoice_no = ?";
+        pstMaster = con.prepareStatement(deleteMasterQuery);
+        pstMaster.setInt(1, invoiceNo);
+        int masterRowsAffected = pstMaster.executeUpdate();
+
+        // 6. Check karein ki kya woh Invoice database me tha bhi ya nahi
+        if (masterRowsAffected > 0) {
+            // Success - Commit data permanently
+            con.commit();
+            javax.swing.JOptionPane.showMessageDialog(this, "Invoice No: " + invoiceNo + " successfully delete ho gaya!");
+            
+            // Form state ko reset aur update karne ke liye
+            datechose.setDate(new java.util.Date());
+            cmbpmode.setSelectedItem("Cash");
+            txtTotal.setText("0.00");
+            
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            
+            autoInvoiceNumber(); // Naya active invoice number update karne ke liye
+            txtid.requestFocus();
+        } else {
+            // Agar record nahi mila toh rollback karein aur user ko batayein
+            con.rollback();
+            javax.swing.JOptionPane.showMessageDialog(this, "Yeh Invoice Number database me nahi mila!");
+        }
+
+    } catch (Exception e) {
+        // 7. Error aane par Rollback takki data safe rahe
+        try {
+            if (con != null) con.rollback();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        e.printStackTrace();
+        javax.swing.JOptionPane.showMessageDialog(this, "Error while deleting: " + e.getMessage());
+    } finally {
+        // 8. Connections safely close karein
+        try {
+            if (pstDetails != null) pstDetails.close();
+            if (pstMaster != null) pstMaster.close();
+            if (con != null) {
+                con.setAutoCommit(true);
+                con.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     }//GEN-LAST:event_btnitemdeleteActionPerformed
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnbackActionPerformed
-
-    private void btnSaveprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveprintActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSaveprintActionPerformed
 
     private void updateTotalAmount() {
     double grandTotal = 0.0;
@@ -1319,7 +1353,6 @@ public void autoInvoiceNumber() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnSaveprint;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnback;
     private javax.swing.JButton btndelete;
