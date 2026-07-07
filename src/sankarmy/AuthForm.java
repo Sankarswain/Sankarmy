@@ -58,6 +58,25 @@ txt_login_pass.setBorder(javax.swing.BorderFactory.createCompoundBorder(
             jTabbedPane1.setLocation(x, y);
         }
     });
+    txt_login_pass.setText("Enter Password");
+txt_login_pass.setEchoChar((char) 0); // Disables masking so placeholder text is readable
+
+txt_login_pass.addFocusListener(new java.awt.event.FocusAdapter() {
+    @Override
+    public void focusGained(java.awt.event.FocusEvent evt) {
+        if (String.valueOf(txt_login_pass.getPassword()).equals("Enter Password")) {
+            txt_login_pass.setText("");
+            txt_login_pass.setEchoChar('*'); // Starts masking when user types password
+        }
+    }
+    @Override
+    public void focusLost(java.awt.event.FocusEvent evt) {
+        if (String.valueOf(txt_login_pass.getPassword()).isEmpty()) {
+            txt_login_pass.setText("Enter Password");
+            txt_login_pass.setEchoChar((char) 0); // Stops masking to show hint again
+        }
+    }
+});
 }
 
     /**
@@ -95,13 +114,19 @@ txt_login_pass.setBorder(javax.swing.BorderFactory.createCompoundBorder(
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 204, 204))); // NOI18N
+        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 153));
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
         jPanel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sankarmy/password-protection.png"))); // NOI18N
 
-        txt_login_uname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_login_uname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_login_uname.setForeground(new java.awt.Color(153, 153, 153));
         txt_login_uname.setText("Enter UserName");
         txt_login_uname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txt_login_uname.setMargin(new java.awt.Insets(2, 10, 2, 2));
@@ -118,7 +143,8 @@ txt_login_pass.setBorder(javax.swing.BorderFactory.createCompoundBorder(
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sankarmy/account (2).png"))); // NOI18N
 
-        txt_login_pass.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_login_pass.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_login_pass.setForeground(new java.awt.Color(153, 153, 153));
         txt_login_pass.setText("Enter Password");
         txt_login_pass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txt_login_pass.setMargin(new java.awt.Insets(2, 10, 2, 2));
@@ -131,9 +157,10 @@ txt_login_pass.setBorder(javax.swing.BorderFactory.createCompoundBorder(
             }
         });
 
-        btnlogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnlogin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnlogin.setForeground(new java.awt.Color(0, 153, 51));
         btnlogin.setText("Login");
-        btnlogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnlogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnlogin.addActionListener(this::btnloginActionPerformed);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -145,9 +172,7 @@ txt_login_pass.setBorder(javax.swing.BorderFactory.createCompoundBorder(
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(152, Short.MAX_VALUE)
-                .addComponent(jLabel9))
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,9 +184,10 @@ txt_login_pass.setBorder(javax.swing.BorderFactory.createCompoundBorder(
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sankarmy/login (1).png"))); // NOI18N
         jLabel8.setText("jLabel8");
 
-        btnExit1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExit1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnExit1.setForeground(new java.awt.Color(255, 51, 51));
         btnExit1.setText("Exit");
-        btnExit1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnExit1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnExit1.addActionListener(this::btnExit1ActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -184,8 +210,8 @@ txt_login_pass.setBorder(javax.swing.BorderFactory.createCompoundBorder(
                         .addGap(190, 190, 190)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(btnlogin)
+                        .addGap(170, 170, 170)
+                        .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(126, Short.MAX_VALUE))
@@ -224,21 +250,26 @@ txt_login_pass.setBorder(javax.swing.BorderFactory.createCompoundBorder(
         jLabel3.setText("Password");
 
         txt_username.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_username.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sankarmy/id-card.png"))); // NOI18N
         jLabel4.setText("Full Name");
 
         txt_fullname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_fullname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sankarmy/account (2).png"))); // NOI18N
         jLabel5.setText("User Name");
 
         txt_password.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btn_register.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_register.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btn_register.setForeground(new java.awt.Color(51, 0, 153));
         btn_register.setText("Register");
+        btn_register.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btn_register.addActionListener(this::btn_registerActionPerformed);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -266,8 +297,10 @@ txt_login_pass.setBorder(javax.swing.BorderFactory.createCompoundBorder(
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sankarmy/sign-up (1).png"))); // NOI18N
 
-        btnExit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(255, 51, 51));
         btnExit.setText("Exit");
+        btnExit.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnExit.addActionListener(this::btnExitActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -306,18 +339,17 @@ txt_login_pass.setBorder(javax.swing.BorderFactory.createCompoundBorder(
                 .addGap(74, 74, 74)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txt_fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_fullname))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_password))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_register)
