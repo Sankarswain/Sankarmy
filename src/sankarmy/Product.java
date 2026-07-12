@@ -4,13 +4,22 @@ package sankarmy;
 import sankarmy.MyConnection;
 
 
-public class Product extends javax.swing.JFrame {
+public class Product extends javax.swing.JFrame{
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Product.class.getName());
 
       public Product() {
         initComponents();
-        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+  // 1. कंप्यूटर की स्क्रीन का असली साइज लें (चाहे कोई भी मॉनिटर हो)
+    java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    
+    // 2. हर स्क्रीन के हिसाब से फुल साइज सेट करें
+    this.setSize(screenSize.width, screenSize.height);
+    this.setPreferredSize(screenSize);
+    this.setMinimumSize(screenSize);
+    this.setLocationRelativeTo(null);
+    
+        //this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
          loadTableData();
          autoIdGenerate();
          
@@ -191,6 +200,7 @@ public void autoIdGenerate() {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setGridColor(new java.awt.Color(153, 153, 153));
         jTable1.setShowGrid(true);
         jTable1.setSurrendersFocusOnKeystroke(true);
         jTable1.getTableHeader().setResizingAllowed(false);
@@ -202,13 +212,9 @@ public void autoIdGenerate() {
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(300);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
         }
 
@@ -242,9 +248,9 @@ public void autoIdGenerate() {
                         .addComponent(btnsave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btndelete)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(272, 272, 272))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(692, 692, 692)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,7 +303,8 @@ public void autoIdGenerate() {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1476, 753));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

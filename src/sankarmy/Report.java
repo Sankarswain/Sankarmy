@@ -17,6 +17,15 @@ public class Report extends javax.swing.JFrame {
      */
     public Report() {
         initComponents();
+ // 1. कंप्यूटर की स्क्रीन का असली साइज लें (चाहे कोई भी मॉनिटर हो)
+    java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    
+    // 2. हर स्क्रीन के हिसाब से फुल साइज सेट करें
+    this.setSize(screenSize.width, screenSize.height);
+    this.setPreferredSize(screenSize);
+    this.setMinimumSize(screenSize);
+    this.setLocationRelativeTo(null);
+ 
         panelStock.setVisible(false);
         panelsale.setVisible(false);
     }
@@ -35,7 +44,7 @@ public class Report extends javax.swing.JFrame {
         checkstock = new javax.swing.JCheckBox();
         checksale = new javax.swing.JCheckBox();
         panelStock = new javax.swing.JPanel();
-        btnStock1 = new javax.swing.JButton();
+        btnPurchItem = new javax.swing.JButton();
         btnStock = new javax.swing.JButton();
         panelsale = new javax.swing.JPanel();
         btnPurchasereport = new javax.swing.JButton();
@@ -61,9 +70,10 @@ public class Report extends javax.swing.JFrame {
 
         panelStock.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnStock1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnStock1.setForeground(new java.awt.Color(255, 0, 153));
-        btnStock1.setText("Purchae Claim Report");
+        btnPurchItem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnPurchItem.setForeground(new java.awt.Color(255, 0, 153));
+        btnPurchItem.setText("Purchae Item Report");
+        btnPurchItem.addActionListener(this::btnPurchItemActionPerformed);
 
         btnStock.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnStock.setForeground(new java.awt.Color(255, 0, 153));
@@ -75,14 +85,14 @@ public class Report extends javax.swing.JFrame {
         panelStockLayout.setHorizontalGroup(
             panelStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnStock1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+            .addComponent(btnPurchItem, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
         );
         panelStockLayout.setVerticalGroup(
             panelStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelStockLayout.createSequentialGroup()
                 .addComponent(btnStock)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnStock1)
+                .addComponent(btnPurchItem)
                 .addContainerGap(191, Short.MAX_VALUE))
         );
 
@@ -94,7 +104,8 @@ public class Report extends javax.swing.JFrame {
 
         btnPurchasereport1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnPurchasereport1.setForeground(new java.awt.Color(255, 0, 153));
-        btnPurchasereport1.setText("Purchae Claim Report");
+        btnPurchasereport1.setText("Sale Item Report");
+        btnPurchasereport1.addActionListener(this::btnPurchasereport1ActionPerformed);
 
         javax.swing.GroupLayout panelsaleLayout = new javax.swing.GroupLayout(panelsale);
         panelsale.setLayout(panelsaleLayout);
@@ -175,7 +186,7 @@ public class Report extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setBounds(0, 0, 1309, 566);
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkstockActionPerformed
@@ -207,6 +218,15 @@ public class Report extends javax.swing.JFrame {
         stockReportForm.setVisible(true);
     }//GEN-LAST:event_btnStockActionPerformed
 
+    private void btnPurchasereport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchasereport1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPurchasereport1ActionPerformed
+
+    private void btnPurchItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchItemActionPerformed
+           ItemWisestock ItemWisestockForm=new ItemWisestock();
+        ItemWisestockForm.setVisible(true);
+    }//GEN-LAST:event_btnPurchItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -233,10 +253,10 @@ public class Report extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPurchItem;
     private javax.swing.JButton btnPurchasereport;
     private javax.swing.JButton btnPurchasereport1;
     private javax.swing.JButton btnStock;
-    private javax.swing.JButton btnStock1;
     private javax.swing.JButton btnback;
     private javax.swing.JCheckBox checksale;
     private javax.swing.JCheckBox checkstock;

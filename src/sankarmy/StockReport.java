@@ -15,8 +15,17 @@ public class StockReport extends javax.swing.JFrame {
      */
     public StockReport() {
         initComponents();
+  // 1. कंप्यूटर की स्क्रीन का असली साइज लें (चाहे कोई भी मॉनिटर हो)
+    java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    
+    // 2. हर स्क्रीन के हिसाब से फुल साइज सेट करें
+    this.setSize(screenSize.width, screenSize.height);
+    this.setPreferredSize(screenSize);
+    this.setMinimumSize(screenSize);
+    this.setLocationRelativeTo(null);
+    
          loadDefaultStockReport();
-        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        //this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
     // इस मेथड को Constructor में initComponents(); के बाद कॉल करें
 private void loadDefaultStockReport() {
@@ -263,7 +272,8 @@ private void loadDefaultStockReport() {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1790, 1050));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void StockTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StockTableMouseClicked

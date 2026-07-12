@@ -9,7 +9,7 @@ package sankarmy;
  *
  * @author dell
  */
-public class AuthForm extends javax.swing.JFrame {
+public class AuthForm extends javax.swing.JFrame{
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AuthForm.class.getName());
 
@@ -18,7 +18,16 @@ public class AuthForm extends javax.swing.JFrame {
      */
     public AuthForm() {
         initComponents();
-        centerTheLoginBox();
+ // 1. कंप्यूटर की स्क्रीन का असली साइज लें (चाहे कोई भी मॉनिटर हो)
+    java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    
+    // 2. हर स्क्रीन के हिसाब से फुल साइज सेट करें
+    this.setSize(screenSize.width, screenSize.height);
+    this.setPreferredSize(screenSize);
+    this.setMinimumSize(screenSize);
+    
+    this.setLocationRelativeTo(null);
+    centerTheLoginBox();
         // प्रोजेक्ट रन होते ही यह पासवर्ड के स्टार हटाकर हिंट टेक्स्ट दिखा देगा
 // 1. यूजरनेम फ़ील्ड के अंदर बाईं तरफ 15 पिक्सेल का स्पेस देने के लिए
 txt_login_uname.setMargin(new java.awt.Insets(0, 15, 0, 0));
@@ -116,7 +125,7 @@ txt_login_pass.addFocusListener(new java.awt.event.FocusAdapter() {
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 204, 204))); // NOI18N
-        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 153));
+        jTabbedPane1.setForeground(new java.awt.Color(0, 153, 0));
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));

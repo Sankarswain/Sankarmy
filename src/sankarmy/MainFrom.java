@@ -20,6 +20,14 @@ public class MainFrom extends javax.swing.JFrame {
      */
     public MainFrom() {
         initComponents();
+ // 1. कंप्यूटर की स्क्रीन का असली साइज लें (चाहे कोई भी मॉनिटर हो)
+    java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    
+    // 2. हर स्क्रीन के हिसाब से फुल साइज सेट करें
+    this.setSize(screenSize.width, screenSize.height);
+    this.setPreferredSize(screenSize);
+    this.setMinimumSize(screenSize);
+    this.setLocationRelativeTo(null);
         jPmaster.setVisible(false);
 pbarcodesale.setVisible(false);
 jPPurchase.setVisible(false);
